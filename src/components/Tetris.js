@@ -78,11 +78,11 @@ const Tetris = () => {
                 <Display text="Level"/>
                 </div>
                 )}
-                <StartButton onCick={startGame} />
+                <StartButton callback={startGame} />
             </aside>
             </StyledTetris>
         </StyledTetrisWrapper>
-    )
+    );
 };
 
 export default Tetris;
