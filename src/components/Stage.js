@@ -1,7 +1,8 @@
 import React from 'react';
+import Cell from './Cell';
 
 const Stage = ({ stage }) => (
-   <p>stage</p>
+  <Cell></Cell>
 );
 
 export default Stage;
