@@ -27,7 +27,7 @@
             [0, 'L', 'L'],
             
         ],
-        color: '36, 95, 223',
+        color: '223, 173, 36',
     },
     O: {
         shape: [
@@ -36,7 +36,7 @@
             
             
         ],
-        color: '223, 173, 36',
+        color: '223, 217, 36',
     },
     S: {
         shape: [
@@ -64,12 +64,7 @@
             
         ],
         color: '227, 78, 78',
-    },
-
-
-
-
-     
+    }
  }
 
  // FUNCTION THAT GENERATES A RANDOM TETROMINO
