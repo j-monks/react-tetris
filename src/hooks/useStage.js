@@ -7,8 +7,27 @@ import { createStage } from '../gameHelpers';
 export const useStage = (player, resetPlayer) => {
     // CREATING THE INITIAL STAGE (CLEAN BOARD)
     const [stage, setStage] = useState(createStage());
+    const [rowsCleared, setRowsCleared] = useState(0);
 
     useEffect(() => {
+        setRowsCleared(0);
+
+        //create a new array with reduce function called Ack
+        //Check the row for any cell with a value of 0, if it does contain a 0 it should
+        //not be cleared
+        const sweepRows = newStage => 
+         newStage.reduce((ack, row) => {
+             if (row.findIndex(cell => cell[0] === 0) === -1) {
+                 setRowsCleared(prev => prev + 1);
+                 ack.unshift(new Array(newStage[0].length).fill([0, 'clear']));
+                 return ack;
+                }
+              ack.push(row);
+              return ack;
+            }, [])
+         
+
+
         const updateStage = prevStage => {
             //FIRST CLEAR THE STAGE (FLUSHING THE STAGE REMOVING ANYTHING THAT SHOULDN'T BE THERE)
             const newStage = prevStage.map(row =>
@@ -31,6 +50,7 @@ export const useStage = (player, resetPlayer) => {
             // checking if we collided
             if (player.collided) {
                 resetPlayer();
+                return sweepRows(newStage);
             }
 
             return newStage;
