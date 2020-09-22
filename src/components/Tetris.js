@@ -35,21 +35,23 @@ const Tetris = () => {
         // RESETS EVERYTHING
         setStage(createStage());
         resetPlayer();
-        // setGameOver(false);
+        setGameOver(false);
     }
     
     const drop = () => {
         if(!checkCollision(player, stage, { x: 0, y: 1 })){
             updatePlayerPos({ x: 0, y: 1, collided: false });
-        // } else {
-        //     // Game Over
-        //     if (player.pos.y < 1){
-        //         console.log("GAME OVER!!!");
-        //         setGameOver(true);
-        //         setDropTime(null);
-        //     }
-        // updatePlayerPos({ x: 0, y: 0, collided: true })
-
+        } else {
+            // Game Over
+            // if the players y axis is less than one we know we are 
+            // colliding near the top of the board meaning game over
+            if (player.pos.y < 1){
+                console.log("GAME OVER!!!");
+                setGameOver(true);
+                // drop time is deactivated once the game is over
+                setDropTime(null);
+            }
+        updatePlayerPos({ x: 0, y: 0, collided: true })
     }
 }
     
