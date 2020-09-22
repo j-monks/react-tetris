@@ -16,6 +16,29 @@ export const usePlayer = () => {
     //const player = playerState[0]
     //const setPlayer = playerState[1]
 
+    // recieves a tetromino and a direction
+    // just handles the rotation of the tetromino
+    const rotate = (tetromino, dir) => {
+        // Makes all the rows in the array to become cols (tetromino array)
+        const rotatedTetro = tetromino.map((_, index) => 
+        tetromino.map(col => col[index]),
+        );
+        // Reverse each row to gt a rotated tetromino
+        // if we are moving with value > 0 then we know we are rotating clockwise
+        // if its < 1 it gets the tetromino rows get reversed
+        if (dir > 0) return rotatedTetro.map(row => row.reverse());
+        return rotatedTetro.reverse();
+    }
+    
+    
+    const playerRotate = (stage, dir) => {
+        const copiedPlayer = JSON.parse(JSON.stringify(player));
+        copiedPlayer.tetromino = rotate(copiedPlayer.tetromino, dir);
+
+        setPlayer(copiedPlayer);
+    }
+
+
     const updatePlayerPos = ({ x, y, collided }) => {
         // getting previous state, your state will by default your previous position plus or minus 1
         setPlayer(prev => ({
@@ -36,7 +59,7 @@ export const usePlayer = () => {
 
     
 
-    return [player, updatePlayerPos, resetPlayer];
+    return [player, updatePlayerPos, resetPlayer, playerRotate];
 
 };
 
