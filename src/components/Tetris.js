@@ -12,7 +12,13 @@ import { useStage } from '../hooks/useStage';
 import Stage from './Stage';
 import Display from './Display';
 import StartButton from './StartButton';
-import Music from './Music';
+
+
+
+//Music
+import Player from "./Player";
+
+
 
 const Tetris = () => {
     // SPEED MODIFIER DEPENDING ON LEVEL THE PLAYER IS ON
@@ -62,7 +68,7 @@ const Tetris = () => {
             // if the players y axis is less than one we know we are 
             // colliding near the top of the board meaning game over
             if (player.pos.y < 1){
-                console.log("GAME OVER!!!");
+                console.log("GAME OVER!");
                 setGameOver(true);
                 // drop time is deactivated once the game is over
                 setDropTime(null);
@@ -107,7 +113,7 @@ useInterval(() => {
     return (
         // STYLEDTETRISWRAPPER IS RESPONSIBLE FOR THE REGISTERING THE KEYSTROKES OF THE USER
         <StyledTetrisWrapper role="button" tabIndex="0" onKeyDown={e => move(e)} onKeyUp={keyUp}>
-            <Music />
+            <Player />
             <StyledTetris>
             <Stage stage={stage} />
             <aside>
